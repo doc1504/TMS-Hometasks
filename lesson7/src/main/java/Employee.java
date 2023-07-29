@@ -10,6 +10,8 @@ public abstract class Employee {
         this.experience = experience;
     }
 
+    public abstract Position getPosition();
+
     public String getName() {
         return name;
     }

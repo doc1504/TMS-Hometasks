@@ -5,6 +5,12 @@ public class Director extends Employee {
     public Director(String name, String secondName, int experience) {
         super(name, secondName, experience);
     }
+
+    @Override
+    public Position getPosition() {
+        return Position.DIRECTOR;
+    }
+
     Employee[] employees = new Employee[10];
 
     public void addEmployee(Employee toAdd){
