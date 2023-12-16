@@ -1,9 +1,6 @@
 package org.example.domain;
-
 import lombok.*;
-
 import javax.persistence.*;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,5 +17,4 @@ public class TaskEntity {
     @ManyToOne
     @ToString.Exclude
     private PersonEntity person;
-
 }

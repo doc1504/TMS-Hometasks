@@ -1,13 +1,10 @@
 package org.example.config;
-
 import org.example.domain.PersonEntity;
 import org.example.domain.TaskEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 public class HibernateConfig {
-
     private static SessionFactory sessionFactory;
 
     static {

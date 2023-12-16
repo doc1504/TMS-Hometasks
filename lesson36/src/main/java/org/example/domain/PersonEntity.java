@@ -1,15 +1,12 @@
 package org.example.domain;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +22,7 @@ public class PersonEntity {
     private LocalDate birthday;
     private Boolean isMan;
    @OneToMany(mappedBy = "person",
+   fetch = FetchType.EAGER,
    cascade = CascadeType.ALL)
     private List<TaskEntity> tasks;
 
