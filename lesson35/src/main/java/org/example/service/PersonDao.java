@@ -1,15 +1,14 @@
 package org.example.service;
 
 import org.example.domain.PersonEntity;
-import org.example.domain.TaskEntity;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 public interface PersonDao {
-    void savePerson (PersonEntity person);
-    void updatePerson (PersonEntity person);
+    void save(PersonEntity person);
+    void update(PersonEntity person);
     PersonEntity getPersonById (Integer id);
     void deletePersonById(Integer id);
-    void getPersonByTask();
+    List<PersonEntity> findPersonWithActiveTask();
     void deletePersonByQuery(Integer id);
 }

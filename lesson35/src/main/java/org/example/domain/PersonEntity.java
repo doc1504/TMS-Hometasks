@@ -31,5 +31,14 @@ public class PersonEntity {
     private List<TaskEntity> tasks;
 
 
+    public void addTask(TaskEntity task) {
+        if (tasks ==null) {
+            tasks = new ArrayList<>();
+        }
+        tasks.add(task);
+        task.setPerson(this);
+    }
+
+
 
 }

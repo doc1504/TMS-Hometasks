@@ -11,29 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDaoImpl implements TaskDao {
-    private List<TaskEntity> tasks;
     @Override
-    public void saveTask(TaskEntity task) {
+    public void save(TaskEntity task) {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         session.save(task);
         transaction.commit();
         session.close();
     }
-    public void addTask (TaskEntity task, PersonEntity person) {
-        Session session = HibernateConfig.create();
-        Transaction transaction = session.beginTransaction();
-        if (tasks == null) {
-            tasks = new ArrayList<>();
-        }
-        tasks.add(task);
-        task.setPerson(person);
-        updateTask(task);
-        transaction.commit();
-        session.close();
-    }
+
     @Override
-    public void updateTask(TaskEntity task) {
+    public void update(TaskEntity task) {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         session.update(task);

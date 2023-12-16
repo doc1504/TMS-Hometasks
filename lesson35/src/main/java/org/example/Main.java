@@ -25,8 +25,8 @@ public class Main {
                 .birthday("01-02-1980")
                 .isMan(true)
                 .build();
-        personDao.savePerson(person1);
-        personDao.savePerson(person2);
+        personDao.save(person1);
+        personDao.save(person2);
         TaskEntity task1 = TaskEntity.builder()
                 .task("CALL")
                 .definition("To call users")
@@ -47,21 +47,25 @@ public class Main {
                 .definition("To meet with users")
                 .status(Status.NEW)
                 .build();
-        taskDao.saveTask(task1);
-        taskDao.saveTask(task2);
-        taskDao.saveTask(task3);
-        taskDao.saveTask(task4);
-        taskDao.addTask(task1, person1);
-        taskDao.addTask(task2, person2);
-        taskDao.addTask(task3, person1);
-        taskDao.addTask(task4, person2);
+        taskDao.save(task1);
+        taskDao.save(task2);
+        taskDao.save(task3);
+        taskDao.save(task4);
+        person1.addTask(task1);
+        taskDao.update(task1);
+        person1.addTask(task2);
+        taskDao.update(task2);
+        person2.addTask(task3);
+        taskDao.update(task3);
+        person2.addTask(task4);
+        taskDao.update(task4);
         task1.setStatus(Status.IN_PROGRESS);
-        taskDao.updateTask(task1);
+        taskDao.update(task1);
         task4.setStatus(Status.DONE);
-        taskDao.updateTask(task4);
+        taskDao.update(task4);
 
         taskDao.getTaskByPerson("Person2");
-        personDao.getPersonByTask();
+        personDao.findPersonWithActiveTask();
 
         personDao.deletePersonById(1);
         personDao.deletePersonById(2);

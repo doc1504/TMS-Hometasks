@@ -2,17 +2,15 @@ package org.example.service;
 
 import org.example.config.HibernateConfig;
 import org.example.domain.PersonEntity;
-import org.example.domain.TaskEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDaoImpl implements PersonDao {
     @Override
-    public void savePerson(PersonEntity person) {
+    public void save(PersonEntity person) {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         session.save(person);
@@ -20,7 +18,7 @@ public class PersonDaoImpl implements PersonDao {
         session.close();
     }
     @Override
-    public void updatePerson(PersonEntity person) {
+    public void update(PersonEntity person) {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         session.update(person);
@@ -51,16 +49,17 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public void getPersonByTask() {
+    public List<PersonEntity> findPersonWithActiveTask() {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         String hqlQuery = "select distinct person from TaskEntity where status = ?1 or status = ?2";
         Query<PersonEntity> query = session.createQuery(hqlQuery, PersonEntity.class);
         query.setParameter(1, "NEW");
         query.setParameter(2, "IN_PROGRESS");
-        query.list().forEach(System.out::println);
+        List<PersonEntity> list = query.list();
         transaction.commit();
         session.close();
+        return list;
     }
 
     @Override
@@ -68,7 +67,7 @@ public class PersonDaoImpl implements PersonDao {
         Session session = HibernateConfig.create();
         Transaction transaction = session.beginTransaction();
         String hqlQuery = "delete from PersonEntity where id = ?1";
-        Query<PersonEntity> query = session.createQuery(hqlQuery, PersonEntity.class);
+        Query<PersonEntity> query = session.createQuery(hqlQuery);
         query.setParameter(1, id);
         int result = query.executeUpdate();
         System.out.println("Delete from PersonEntity" + result);
