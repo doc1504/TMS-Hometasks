@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> SAVE MOVIE </h2>
+
+<form th:action="@{/save}" method="post">
+    <input type="text" name="name" placeholder="movie_name"><br>
+    <br>
+    <div th:each="gnr : ${genres}">
+        [[${gnr.name}]]<input type="radio" name="genre" th:value="${gnr.name()}">
+    </div>
+    <br>
+    <input type="text" name="date" placeholder="date_of_release"><br>
+    <input type="number" name="rating" placeholder="rating"><br>
+    <br>
+    <input type="submit" value="SAVE">
+</form>
+<ul>
+<li th:each="movie : ${movies}">
+    <form th:action="@{/update/{id}(id = ${movie.getId()})}" method="post">
+        <p>Name: <span th:text="${movie.name}"></span></p>
+        <p>Genre: <span th:text="${movie.genre}"></span></p>
+        <p>Date of release <span th:text="${movie.date}"></span></p>
+        <p>Rating: <input type="number" name="rating" th:value="${movie.rating}">
+            <input type="submit" value="update">
+        </p>
+    </form>
+</li>
+</ul>
+
+</body>
+</html>
