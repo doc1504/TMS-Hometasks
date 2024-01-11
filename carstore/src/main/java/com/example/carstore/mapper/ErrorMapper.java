@@ -1,10 +1,8 @@
 package com.example.carstore.mapper;
-
 import com.example.carstore.dto.InternalCarStoreException;
 import com.example.carstore.exc.CarFailedException;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
 @Mapper (
         componentModel = "spring"
 )

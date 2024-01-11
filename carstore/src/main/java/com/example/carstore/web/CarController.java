@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/store/cars")
@@ -23,6 +22,5 @@ public class CarController {
     public CarDto getById (@PathVariable(name = "id") Integer id) {
         return service.getById(id);
     }
-
 
 }

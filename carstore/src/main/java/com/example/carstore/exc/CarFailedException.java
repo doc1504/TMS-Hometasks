@@ -1,9 +1,7 @@
 package com.example.carstore.exc;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter @Setter
 public class CarFailedException extends RuntimeException{
     @JsonProperty("message")

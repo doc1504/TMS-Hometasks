@@ -21,6 +21,4 @@ public class CarController {
     public CarDto find (@PathVariable(name = "id") Integer id) {
         return service.getById(id);
     }
-
-
 }
